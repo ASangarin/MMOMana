@@ -1,0 +1,26 @@
+
+# Change default stats here
+# Regen unit: <resource>/sec
+default:
+    max-mana: 20
+    max-stamina: 20
+    mana-regeneration: 0.5
+    stamina-regeneration: 0.5
+
+# The percentage of their max mana/stamina which players
+# get as mana/stamina when logging in for the first time
+login-ratio:
+    mana: 75
+    stamina: 75
+
+# Edit here the character used in the resource bars
+# in the %mana_<mana/stamina>_bar% placeholder.
+resource-bar:
+    mana:
+        char: =
+        length: 20
+        color: '&f'
+    stamina:
+        char: =
+        length: 20
+        color: '&f'

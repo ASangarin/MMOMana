@@ -1,0 +1,6 @@
+name: MMOMana
+author: ASangarin
+version: ${project.version}
+main: eu.asangarin.mana.MMOMana
+api-version: 1.13
+depend: [MMOItems]
