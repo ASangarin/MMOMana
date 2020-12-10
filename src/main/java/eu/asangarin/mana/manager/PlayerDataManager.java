@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PlayerDataManager {
-	private final Map<UUID, ResourceData> map = new HashMap();
+	private final Map<UUID, ResourceData> map = new HashMap<>();
 
 	public PlayerDataManager() {
 	}
@@ -33,7 +33,7 @@ public class PlayerDataManager {
 	}
 
 	public ResourceData get(UUID uuid) {
-		return (ResourceData) this.map.get(uuid);
+		return this.map.get(uuid);
 	}
 
 	public void unload(OfflinePlayer player) {

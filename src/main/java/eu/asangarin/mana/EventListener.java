@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class EventListener implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
-	public void a(PlayerJoinEvent event) {
+	public void playerJoin(PlayerJoinEvent event) {
 		MMOMana.plugin.dataManager.setup(event.getPlayer());
 	}
 }
