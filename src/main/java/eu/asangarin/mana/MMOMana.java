@@ -55,7 +55,7 @@ public class MMOMana extends JavaPlugin {
 		}
 
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
-		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
+		Bukkit.getScheduler().runTaskTimer(this, () -> {
 			for(ResourceData data : dataManager.getLoaded()) {
 				if (data.toMMOLib().isOnline()) {
 					data.giveMana(data.getStat(ResourceData.StatType.MANA_REGENERATION), ResourceRegainReason.REGENERATION);
