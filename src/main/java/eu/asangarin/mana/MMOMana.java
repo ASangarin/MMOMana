@@ -63,7 +63,7 @@ public class MMOMana extends JavaPlugin {
 				}
 			}
 		}, 100L, 20L);
-		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> dataManager.getLoaded().removeIf(data -> !data.toMMOLib().getPlayer().isOnline() && System.currentTimeMillis() - data.toMMOLib().getPlayer().getLastPlayed() > 3600000L), 100L, 72000L);
+		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> dataManager.getLoaded().removeIf(data -> !data.toMMOLib().getPlayer().isOnline() && (System.currentTimeMillis() - data.toMMOLib().getPlayer().getLastPlayed() > 3600000L)), 100L, 72000L);
 	}
 
 	public void loadOptions() {
