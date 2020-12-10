@@ -1,3 +1,8 @@
+# MMOMANA - v${project.version}
+# an Addon for MMOItems by ASangarin - (Original Plugin by Indyuce)
+
+# DO NOT TOUCH
+config-version: 2
 
 # Change default stats here
 # Regen unit: <resource>/sec
@@ -17,10 +22,20 @@ login-ratio:
 # in the %mana_<mana/stamina>_bar% placeholder.
 resource-bar:
     mana:
-        char: =
+        char: █
         length: 20
-        color: '&f'
+        colors:
+            whole: AQUA
+            #You can use HEX colors too:
+            #whole: \#223344
+            half: DARK_AQUA
+            empty: WHITE
     stamina:
-        char: =
+        char: █
         length: 20
-        color: '&f'
+        colors:
+            whole: GREEN
+            half: DARK_GREEN
+            empty: WHITE
+
+# Crazy Noisy Bizarre Plugin..?

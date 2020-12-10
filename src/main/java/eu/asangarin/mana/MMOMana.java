@@ -19,23 +19,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MMOMana extends JavaPlugin {
 	public static MMOMana plugin;
 	public final PlayerDataManager dataManager = new PlayerDataManager();
-	public double loginManaRatio;
-	public double loginStaminaRatio;
-	public int manaBarLength;
-	public int staminaBarLength;
-	public String manaBarColor;
-	public String staminaBarColor;
-	public char manaBarChar;
-	public char staminaBarChar;
+	public final ManaConfig config = new ManaConfig();
 
 	public void onLoad() {
 		plugin = this;
 		this.saveDefaultConfig();
+		config.loadOptions(getConfig());
 		for(ResourceData.StatType type : ResourceData.StatType.values())
 			type.registerStat();
 	}
 
 	public void onEnable() {
+		final int configVersion = getConfig().contains("config-version", true) ? getConfig().getInt("config-version") : -1;
+		final int defConfigVersion = getConfig().getDefaults().getInt("config-version");
+		if(configVersion != defConfigVersion) {
+			getLogger().warning("You may be using an outdated config.yml!");
+			getLogger().warning("(Your config version: '" + configVersion + "' | Expected config version: '" + defConfigVersion + "')");
+		}
+
 		if (Bukkit.getPluginManager().isPluginEnabled("MMOCore")) {
 			getLogger().severe("DO NOT USE THIS ADDON ALONGSIDE MMOCORE!");
 			getLogger().severe("DO NOT USE THIS ADDON ALONGSIDE MMOCORE!");
@@ -45,7 +46,6 @@ public class MMOMana extends JavaPlugin {
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
-		this.loadOptions();
 		MMOItems.plugin.setRPG(new DefaultHook());
 
 		Bukkit.getOnlinePlayers().forEach(this.dataManager::setup);
@@ -64,16 +64,5 @@ public class MMOMana extends JavaPlugin {
 			}
 		}, 100L, 20L);
 		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> dataManager.getLoaded().removeIf(data -> !data.toMMOLib().getPlayer().isOnline() && (System.currentTimeMillis() - data.toMMOLib().getPlayer().getLastPlayed() > 3600000L)), 100L, 72000L);
-	}
-
-	public void loadOptions() {
-		this.loginManaRatio = this.getConfig().getDouble("login-ratio.mana");
-		this.loginStaminaRatio = this.getConfig().getDouble("login-ratio.stamina");
-		this.manaBarChar = this.getConfig().getString("resource-bar.mana.char").toCharArray()[0];
-		this.manaBarColor = this.getConfig().getString("resource-bar.mana.color");
-		this.manaBarLength = this.getConfig().getInt("resource-bar.mana.length");
-		this.staminaBarChar = this.getConfig().getString("resource-bar.stamina.char").toCharArray()[0];
-		this.staminaBarColor = this.getConfig().getString("resource-bar.stamina.color");
-		this.staminaBarLength = this.getConfig().getInt("resource-bar.stamina.length");
 	}
 }

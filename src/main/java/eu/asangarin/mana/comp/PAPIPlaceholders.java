@@ -5,16 +5,13 @@
 
 package eu.asangarin.mana.comp;
 
-import java.text.DecimalFormat;
-
 import eu.asangarin.mana.MMOMana;
 import eu.asangarin.mana.api.ResourceData;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.mmogroup.mmolib.MMOLib;
 import org.bukkit.OfflinePlayer;
 
 public class PAPIPlaceholders extends PlaceholderExpansion {
-	private static final DecimalFormat digit = new DecimalFormat("0.#");
-
 	public String getAuthor() {
 		return "Indyuce";
 	}
@@ -28,23 +25,24 @@ public class PAPIPlaceholders extends PlaceholderExpansion {
 	}
 
 	public String onRequest(OfflinePlayer player, String identifier) {
+		ResourceData resourceData = MMOMana.plugin.dataManager.get(player);
 		switch (identifier) {
 			case "mana":
-				return digit.format(MMOMana.plugin.dataManager.get(player).getMana());
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getMana());
 			case "stamina":
-				return digit.format(MMOMana.plugin.dataManager.get(player).getStamina());
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getStamina());
 			case "mana_bar":
-				return MMOMana.plugin.dataManager.get(player).getManaBar(MMOMana.plugin.manaBarLength, MMOMana.plugin.manaBarChar, MMOMana.plugin.manaBarColor);
+				return resourceData.getManaBar();
 			case "stamina_bar":
-				return MMOMana.plugin.dataManager.get(player).getStaminaBar(MMOMana.plugin.staminaBarLength, MMOMana.plugin.staminaBarChar, MMOMana.plugin.staminaBarColor);
+				return resourceData.getStaminaBar();
 			case "max_mana":
-				return digit.format(MMOMana.plugin.dataManager.get(player).getStat(ResourceData.StatType.MAX_MANA));
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getStat(ResourceData.StatType.MAX_MANA));
 			case "max_stamina":
-				return digit.format(MMOMana.plugin.dataManager.get(player).getStat(ResourceData.StatType.MAX_STAMINA));
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getStat(ResourceData.StatType.MAX_STAMINA));
 			case "mana_regen":
-				return digit.format(MMOMana.plugin.dataManager.get(player).getStat(ResourceData.StatType.MANA_REGENERATION));
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getStat(ResourceData.StatType.MANA_REGENERATION));
 			case "stamina_regen":
-				return identifier.equals("stamina_regen") ? digit.format(MMOMana.plugin.dataManager.get(player).getStat(ResourceData.StatType.STAMINA_REGENERATION)) : null;
+				return MMOLib.plugin.getMMOConfig().decimal.format(resourceData.getStat(ResourceData.StatType.STAMINA_REGENERATION));
 			default:
 				return "PHE";
 		}
