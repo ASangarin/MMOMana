@@ -62,7 +62,7 @@ public class MMOMana extends JavaPlugin {
 					data.giveStamina(data.getStat(ResourceData.StatType.STAMINA_REGENERATION), ResourceRegainReason.REGENERATION);
 				}
 			}
-		}, 100L, 20L);
+		}, 100L, config.refreshRate);
 		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> dataManager.getLoaded().removeIf(data -> !data.toMMOLib().isOnline()), 600000L, 600000L);
 	}
 }

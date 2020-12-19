@@ -5,12 +5,16 @@
 config-version: 2
 
 # Change default stats here
-# Regen unit: <resource>/sec
+# Regen unit: <resource> per 'refresh-rate'
 default:
     max-mana: 20
     max-stamina: 20
     mana-regeneration: 0.5
     stamina-regeneration: 0.5
+
+# The interval at which regeneration should happen in ticks.
+# Default value is 20 ticks which is the same as 1 second.
+refresh-rate: 20
 
 # The percentage of their max mana/stamina which players
 # get as mana/stamina when logging in for the first time

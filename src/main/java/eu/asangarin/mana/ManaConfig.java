@@ -4,6 +4,8 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ManaConfig {
+	public int refreshRate;
+
 	public double loginManaRatio;
 	public double loginStaminaRatio;
 
@@ -21,6 +23,8 @@ public class ManaConfig {
 	public char staminaBarChar;
 
 	public void loadOptions(FileConfiguration config) {
+		this.refreshRate = config.getInt("refresh-rate");
+
 		this.loginManaRatio = config.getDouble("login-ratio.mana");
 		this.loginStaminaRatio = config.getDouble("login-ratio.stamina");
 
