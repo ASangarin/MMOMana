@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package eu.asangarin.mana.comp;
 
 import eu.asangarin.mana.MMOMana;
@@ -17,7 +12,7 @@ import org.bukkit.event.player.PlayerLevelChangeEvent;
 public class DefaultHook implements RPGHandler, Listener {
 	@EventHandler
 	public void a(PlayerLevelChangeEvent event) {
-		PlayerData.get(event.getPlayer()).scheduleDelayedInventoryUpdate();
+		PlayerData.get(event.getPlayer()).getInventory().scheduleUpdate();
 	}
 
 	public RPGPlayer getInfo(PlayerData data) {
