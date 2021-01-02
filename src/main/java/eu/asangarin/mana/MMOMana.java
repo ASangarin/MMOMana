@@ -53,8 +53,8 @@ public class MMOMana extends JavaPlugin {
 		Bukkit.getScheduler().runTaskTimer(this, () -> {
 			for(ResourceData data : dataManager.getLoaded()) {
 				if (data.toMMOLib().isOnline()) {
-					data.giveMana(data.getStat(ResourceData.StatType.MANA_REGENERATION), ResourceRegainReason.REGENERATION);
-					data.giveStamina(data.getStat(ResourceData.StatType.STAMINA_REGENERATION), ResourceRegainReason.REGENERATION);
+					data.giveMana(data.getStat(ResourceData.StatType.MANA_REGENERATION) * config.regenScale, ResourceRegainReason.REGENERATION);
+					data.giveStamina(data.getStat(ResourceData.StatType.STAMINA_REGENERATION) * config.regenScale, ResourceRegainReason.REGENERATION);
 				}
 			}
 		}, 100L, config.refreshRate);

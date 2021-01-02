@@ -2,7 +2,7 @@
 # an Addon for MMOItems by ASangarin - (Original Plugin by Indyuce)
 
 # DO NOT TOUCH
-config-version: 2
+config-version: 3
 
 # Change default stats here
 # Regen unit: <resource> per 'refresh-rate'
@@ -15,6 +15,14 @@ default:
 # The interval at which regeneration should happen in ticks.
 # Default value is 20 ticks which is the same as 1 second.
 refresh-rate: 20
+# How many % of the players regen value that is ACTUALLY
+# regenerated. The formula for how much is regenerated
+# per regeneration interval is: (regenerationStat * regenScale)
+# For example, if the player has 0.5 mana-regen and the regen-scale
+# is set to 0.5 they will only regenerate 0.25 mana each interval.
+# This feature exists for smooth scaling of regeneration, while still
+# keeping a somewhat "per seconds" or something regen amount.
+regen-scale: 1
 
 # The percentage of their max mana/stamina which players
 # get as mana/stamina when logging in for the first time

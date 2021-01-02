@@ -86,8 +86,8 @@ public class ResourceData {
 		StringBuilder format = new StringBuilder();
 		double ratio = MMOMana.plugin.config.manaBarLength * getMana() / getStat(StatType.MAX_MANA);
 		for (double j = 1; j < MMOMana.plugin.config.manaBarLength; j++)
-			format.append(ratio >= j ? MMOMana.plugin.config.manaBarWholeColor : ratio >= j - .5
-				? MMOMana.plugin.config.manaBarHalfColor : MMOMana.plugin.config.manaBarEmptyColor)
+			format.append(ratio >= j ? MMOMana.plugin.config.manaBarWholeColor : (ratio >= j - .5
+				? MMOMana.plugin.config.manaBarHalfColor : MMOMana.plugin.config.manaBarEmptyColor))
 					.append(MMOMana.plugin.config.manaBarChar);
 		return format.toString();
 	}
@@ -96,8 +96,8 @@ public class ResourceData {
 		StringBuilder format = new StringBuilder();
 		double ratio = MMOMana.plugin.config.staminaBarLength * getStamina() / getStat(StatType.MAX_STAMINA);
 		for (double j = 1; j < MMOMana.plugin.config.staminaBarLength; j++)
-			format.append(ratio >= j ? MMOMana.plugin.config.staminaBarWholeColor : ratio >= j - .5
-					? MMOMana.plugin.config.staminaBarHalfColor : MMOMana.plugin.config.staminaBarEmptyColor)
+			format.append(ratio >= j ? MMOMana.plugin.config.staminaBarWholeColor : (ratio >= j - .5
+					? MMOMana.plugin.config.staminaBarHalfColor : MMOMana.plugin.config.staminaBarEmptyColor))
 					.append(MMOMana.plugin.config.staminaBarChar);
 		return format.toString();
 	}

@@ -8,22 +8,24 @@ public class ManaConfig {
 
 	public double loginManaRatio;
 	public double loginStaminaRatio;
+	public double regenScale;
 
 	public int manaBarLength;
 	public int staminaBarLength;
 
-	public ChatColor manaBarWholeColor;
-	public ChatColor manaBarHalfColor;
-	public ChatColor manaBarEmptyColor;
-	public ChatColor staminaBarWholeColor;
-	public ChatColor staminaBarHalfColor;
-	public ChatColor staminaBarEmptyColor;
+	public ChatColor manaBarWholeColor = ChatColor.GRAY;
+	public ChatColor manaBarHalfColor = ChatColor.GRAY;
+	public ChatColor manaBarEmptyColor = ChatColor.GRAY;
+	public ChatColor staminaBarWholeColor = ChatColor.GRAY;
+	public ChatColor staminaBarHalfColor = ChatColor.GRAY;
+	public ChatColor staminaBarEmptyColor = ChatColor.GRAY;
 
 	public char manaBarChar;
 	public char staminaBarChar;
 
 	public void loadOptions(FileConfiguration config) {
 		this.refreshRate = config.getInt("refresh-rate");
+		this.regenScale = config.getDouble("regen-scale");
 
 		this.loginManaRatio = config.getDouble("login-ratio.mana");
 		this.loginStaminaRatio = config.getDouble("login-ratio.stamina");
@@ -34,12 +36,12 @@ public class ManaConfig {
 		this.staminaBarChar = config.getString("resource-bar.stamina.char").charAt(0);
 		this.staminaBarLength = config.getInt("resource-bar.stamina.length");
 
-		this.manaBarWholeColor = getColorFromString(config.getString(""));
-		this.manaBarHalfColor = getColorFromString(config.getString(""));
-		this.manaBarEmptyColor = getColorFromString(config.getString(""));
-		this.staminaBarWholeColor = getColorFromString(config.getString(""));
-		this.staminaBarHalfColor = getColorFromString(config.getString(""));
-		this.staminaBarEmptyColor = getColorFromString(config.getString(""));
+		this.manaBarWholeColor = getColorFromString(config.getString("resource-bar.mana.colors.whole"));
+		this.manaBarHalfColor = getColorFromString(config.getString("resource-bar.mana.colors.half"));
+		this.manaBarEmptyColor = getColorFromString(config.getString("resource-bar.mana.colors.empty"));
+		this.staminaBarWholeColor = getColorFromString(config.getString("resource-bar.stamina.colors.whole"));
+		this.staminaBarHalfColor = getColorFromString(config.getString("resource-bar.stamina.colors.half"));
+		this.staminaBarEmptyColor = getColorFromString(config.getString("resource-bar.stamina.colors.empty"));
 	}
 
 	private ChatColor getColorFromString(String color) {
