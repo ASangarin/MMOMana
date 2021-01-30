@@ -44,14 +44,25 @@ public class ManaConfig {
 		this.staminaBarEmptyColor = getColorFromString(config.getString("resource-bar.stamina.colors.empty"));
 	}
 
+	@SuppressWarnings("deprecation")
 	private ChatColor getColorFromString(String color) {
 		ChatColor cc = ChatColor.getByChar(color.charAt(0));
-		if(cc == null)
-			cc = ChatColor.of(color);
+		try {
+			return ChatColor.valueOf(color);
+		} catch (IllegalArgumentException ignore) {}
 		if(cc == null) {
-			MMOMana.plugin.getLogger().severe("Couldn't load Color {" + color + "}");
-			return ChatColor.WHITE;
+			try {
+				cc = ChatColor.of(color);
+			} catch (NoSuchMethodError exception) {
+				MMOMana.plugin.getLogger().severe("Tried to use the ChatColor.of() method, but it couldn't be found!");
+				MMOMana.plugin.getLogger().severe("Is '" + color + "' a hex color? If so, make sure you're on 1.16 or above!");
+				return ChatColor.WHITE;
+			}
 		}
-		return cc;
+		if(cc != null)
+			return cc;
+
+		MMOMana.plugin.getLogger().severe("Couldn't load Color {" + color + "}");
+		return ChatColor.WHITE;
 	}
 }
