@@ -7,10 +7,10 @@ import eu.asangarin.mana.api.event.ResourceRegainEvent;
 import eu.asangarin.mana.stat.ManaRegeneration;
 import eu.asangarin.mana.stat.MaxStamina;
 import eu.asangarin.mana.stat.StaminaRegeneration;
+import io.lumine.mythic.lib.api.player.MMOPlayerData;
+import io.lumine.mythic.lib.api.stat.modifier.StatModifier;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
-import net.mmogroup.mmolib.api.player.MMOPlayerData;
-import net.mmogroup.mmolib.api.stat.modifier.StatModifier;
 import org.bukkit.Bukkit;
 
 public class ResourceData {

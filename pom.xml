@@ -6,7 +6,7 @@
 
     <groupId>eu.asangarin</groupId>
     <artifactId>MMOMana</artifactId>
-    <version>1.2.4</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
     <name>MMOMana</name>
 
@@ -64,6 +64,10 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <repository>
+            <id>lumine-repo</id>
+            <url>https://mvn.lumine.io/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -76,13 +80,13 @@
         <dependency>
             <groupId>net.Indyuce</groupId>
             <artifactId>MMOItems</artifactId>
-            <version>6.5.2-SNAPSHOT</version>
+            <version>6.5.4</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.Indyuce</groupId>
-            <artifactId>MMOLib</artifactId>
-            <version>1.7.4</version>
+            <groupId>io.lumine</groupId>
+            <artifactId>MythicLib</artifactId>
+            <version>1.0.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

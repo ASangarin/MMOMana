@@ -1,7 +1,7 @@
 package eu.asangarin.mana.manager;
 
 import eu.asangarin.mana.api.ResourceData;
-import net.mmogroup.mmolib.api.player.MMOPlayerData;
+import io.lumine.mythic.lib.api.player.MMOPlayerData;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
