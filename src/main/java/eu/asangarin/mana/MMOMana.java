@@ -1,5 +1,8 @@
 package eu.asangarin.mana;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import eu.asangarin.mana.api.ResourceData;
@@ -8,6 +11,7 @@ import eu.asangarin.mana.comp.DefaultHook;
 import eu.asangarin.mana.comp.PAPIPlaceholders;
 import eu.asangarin.mana.manager.PlayerDataManager;
 import net.Indyuce.mmoitems.MMOItems;
+import net.Indyuce.mmoitems.comp.rpg.RPGHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,7 +45,21 @@ public class MMOMana extends JavaPlugin {
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
-		MMOItems.plugin.setRPG(new DefaultHook());
+
+//		MMOItems.plugin.setRPG(new DefaultHook());
+
+		try {
+			MMOItems instance = MMOItems.plugin;
+			Field rpgPluginsField = MMOItems.class.getDeclaredField("rpgPlugins");
+			rpgPluginsField.setAccessible(true);
+			List<RPGHandler> newRpgPlugins = new ArrayList<>();
+			newRpgPlugins.add(new DefaultHook());
+			rpgPluginsField.set(instance, newRpgPlugins);
+
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
 
 		Bukkit.getOnlinePlayers().forEach(this.dataManager::setup);
 		if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -58,6 +76,7 @@ public class MMOMana extends JavaPlugin {
 				}
 			}
 		}, 100L, config.refreshRate);
+
 		Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> dataManager.getLoaded().removeIf(data -> !data.toMMOLib().isOnline()), 600000L, 600000L);
 	}
 }
