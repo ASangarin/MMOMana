@@ -20,10 +20,10 @@ public class ResourceData {
 
 	public ResourceData(MMOPlayerData data) {
 		this.data = data;
-		data.getStatMap().getInstance("MAX_MANA").addModifier("manaAndStamina", new StatModifier(ResourceData.StatType.MAX_MANA.getBase()));
-		data.getStatMap().getInstance("MAX_STAMINA").addModifier("manaAndStamina", new StatModifier(ResourceData.StatType.MAX_STAMINA.getBase()));
-		data.getStatMap().getInstance("MANA_REGENERATION").addModifier("manaAndStamina", new StatModifier(ResourceData.StatType.MANA_REGENERATION.getBase()));
-		data.getStatMap().getInstance("STAMINA_REGENERATION").addModifier("manaAndStamina", new StatModifier(ResourceData.StatType.STAMINA_REGENERATION.getBase()));
+		new StatModifier("manaAndStamina","MAX_MANA", StatType.MAX_MANA.getBase()).register(data);
+		new StatModifier("manaAndStamina","MAX_STAMINA", StatType.MAX_STAMINA.getBase()).register(data);
+		new StatModifier("manaAndStamina","MANA_REGENERATION", StatType.MANA_REGENERATION.getBase()).register(data);
+		new StatModifier("manaAndStamina","STAMINA_REGENERATION", StatType.STAMINA_REGENERATION.getBase()).register(data);
 		this.mana = MMOMana.plugin.config.loginManaRatio / 100.0D * this.getStat(ResourceData.StatType.MAX_MANA);
 		this.stamina = MMOMana.plugin.config.loginStaminaRatio / 100.0D * this.getStat(ResourceData.StatType.MAX_STAMINA);
 	}

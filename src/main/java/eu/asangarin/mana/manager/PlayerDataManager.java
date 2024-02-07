@@ -20,7 +20,6 @@ public class PlayerDataManager {
 		if (!this.map.containsKey(player.getUniqueId())) {
 			this.map.put(player.getUniqueId(), new ResourceData(MMOPlayerData.get(player)));
 		}
-
 	}
 
 	public ResourceData get(OfflinePlayer player) {
